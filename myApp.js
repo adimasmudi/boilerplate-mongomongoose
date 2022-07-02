@@ -64,16 +64,15 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-  Person.update({
-    _id : personId
-  },{
-    $push : {
-      favoriteFoods : foodToAdd
-    }
-  }, function(err, data){
+  Person.findById({_id:personId}, function(err, data){
     if(err) return console.error(err)
-    done(null, data)
-  })
+    Person.favoriteFoods.push(foodToAdd)
+    Person.save(function(err, data){
+      if(err) return console.error(err)
+      done(null , data);
+    })
+    
+})
 
   
 };
