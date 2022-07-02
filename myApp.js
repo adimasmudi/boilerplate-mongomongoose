@@ -16,7 +16,7 @@ let personSchema = new mongoose.Schema({
   }]
 })
 
-Person = mongoose.model('person',personSchema)
+Person = mongoose.model('Person',personSchema)
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
 };
